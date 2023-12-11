@@ -156,7 +156,7 @@ if __name__ == "__main__":
 
     #####################################################
     ### EXPERIMENT 5: QUERY EXPANSION - ANSWER PROMPT ###
-    print('EXPERIMENT 4: QUERY EXPANSION - ANSWER PROMPT')
+    print('EXPERIMENT 5: QUERY EXPANSION - ANSWER PROMPT')
     print("\n")
 
     # BM25
