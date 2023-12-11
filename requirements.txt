@@ -2,86 +2,77 @@ aiohttp==3.9.1
 aiosignal==1.3.1
 annotated-types==0.6.0
 anyio==3.7.1
-archspec @ file:///croot/archspec_1697725767277/work
+async-timeout==4.0.3
 attrs==23.1.0
 blis==0.7.11
-boltons @ file:///Users/ec2-user/ci_py311/boltons_1678396074811/work
-Brotli @ file:///Users/ec2-user/ci_py311/brotli-split_1678379922007/work
 catalogue==2.0.10
-certifi @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_3cotsv2wp9/croot/certifi_1700501675943/work/certifi
-cffi @ file:///Users/ec2-user/ci_py311/cffi_1678315312775/work
-charset-normalizer @ file:///tmp/build/80754af9/charset-normalizer_1630003229654/work
+certifi==2023.11.17
+charset-normalizer==3.3.2
 click==8.1.7
 cloudpathlib==0.16.0
 coloredlogs==15.0.1
-conda @ file:///private/var/folders/c_/qfmhj66j0tn016nkx_th4hxm0000gp/T/abs_3euhwio6fy/croot/conda_1699303142455/work
-conda-content-trust @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_3dvkcnnrtu/croot/conda-content-trust_1693490624887/work
-conda-libmamba-solver @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_d90wyxn6tw/croot/conda-libmamba-solver_1700150913300/work/src
-conda-package-handling @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_99vcqjo8cf/croot/conda-package-handling_1690999935230/work
-conda_package_streaming @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_d5wg6eonuu/croot/conda-package-streaming_1690987980119/work
 confection==0.1.4
-cryptography @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_19sc_35nzq/croot/cryptography_1694211574676/work
 cymem==2.0.8
 Cython==3.0.6
+dataclasses-json==0.6.3
 datasets==2.15.0
 dill==0.3.7
 distro==1.8.0
-faiss==1.7.4
-filelock @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_cd61an5em3/croot/filelock_1700591192468/work
+exceptiongroup==1.2.0
+faiss-cpu==1.7.4
+filelock==3.13.1
 flatbuffers==23.5.26
 frozenlist==1.4.0
 fsspec==2023.10.0
-gmpy2 @ file:///Users/ec2-user/ci_py311/gmpy2_1678380831980/work
+greenlet==3.0.1
 h11==0.14.0
 httpcore==1.0.2
 httpx==0.25.2
 huggingface-hub==0.19.4
 humanfriendly==10.0
-idna @ file:///Users/ec2-user/ci_py311/idna_1678315819133/work
-Jinja2 @ file:///Users/ec2-user/ci_py311/jinja2_1678317138271/work
+idna==3.6
+Jinja2==3.1.2
 joblib==1.3.2
-jsonpatch @ file:///tmp/build/80754af9/jsonpatch_1615747632069/work
-jsonpointer==2.1
+jsonpatch==1.33
+jsonpointer==2.4
+langchain==0.0.346
+langchain-core==0.0.10
 langcodes==3.3.0
-libmambapy @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_c6lfzyxwf1/croot/mamba-split_1698782637688/work/libmambapy
-lightgbm @ file:///Users/runner/miniforge3/conda-bld/lightgbm_1698242078114/work
-MarkupSafe @ file:///Users/ec2-user/ci_py311/markupsafe_1678316973889/work
-mpmath @ file:///private/var/folders/c_/qfmhj66j0tn016nkx_th4hxm0000gp/T/abs_8fyoqwupl2/croot/mpmath_1690848275746/work
+langsmith==0.0.69
+lightgbm==4.1.0
+MarkupSafe==2.1.3
+marshmallow==3.20.1
+mpmath==1.3.0
 multidict==6.0.4
 multiprocess==0.70.15
 murmurhash==1.0.10
-networkx @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_666p3uavvu/croot/networkx_1690562005807/work
-nmslib @ file:///Users/runner/miniforge3/conda-bld/nmslib_1695723011790/work/python_bindings
-numpy @ file:///Users/runner/miniforge3/conda-bld/numpy_1700874570613/work/dist/numpy-1.26.2-cp311-cp311-macosx_10_9_x86_64.whl#sha256=683bdac9ac7667fbe2f0bc868ed4409eeb3cd7808b6085a78cd89e5960a83672
+mypy-extensions==1.0.0
+networkx==3.2.1
+nmslib==2.1.1
+numpy==1.26.2
 onnxruntime==1.16.3
-openai==1.3.6
-packaging @ file:///private/var/folders/c_/qfmhj66j0tn016nkx_th4hxm0000gp/T/abs_2algm5p9lp/croot/packaging_1693575178038/work
+openai==1.3.7
+packaging==23.2
 pandas==2.1.3
-pluggy @ file:///Users/ec2-user/ci_py311/pluggy_1678315400971/work
 preshed==3.0.9
 protobuf==4.25.1
-psutil @ file:///Users/runner/miniforge3/conda-bld/psutil_1695367121119/work
+psutil==5.9.6
 pyarrow==14.0.1
 pyarrow-hotfix==0.6
-pybind11 @ file:///Users/runner/miniforge3/conda-bld/pybind11-split_1695367073555/work
-pybind11-global @ file:///Users/runner/miniforge3/conda-bld/pybind11-split_1695367073555/work
-pycosat @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_09anpuxx5u/croot/pycosat_1696536514697/work
-pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
+pybind11==2.6.1
 pydantic==2.5.2
 pydantic_core==2.14.5
 pyjnius==1.6.1
-pyOpenSSL @ file:///private/var/folders/c_/qfmhj66j0tn016nkx_th4hxm0000gp/T/abs_7fwdg30481/croot/pyopenssl_1690223429070/work
 pyserini==0.23.0
-PySocks @ file:///Users/ec2-user/ci_py311/pysocks_1678315868424/work
 python-dateutil==2.8.2
+python-dotenv==1.0.0
 pytz==2023.3.post1
-PyYAML @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_37cfd0k_yi/croot/pyyaml_1698096054183/work
+PyYAML==6.0.1
 regex==2023.10.3
-requests @ file:///private/var/folders/c_/qfmhj66j0tn016nkx_th4hxm0000gp/T/abs_fa2zrx4csg/croot/requests_1690400223595/work
-ruamel.yaml @ file:///Users/ec2-user/ci_py311/ruamel.yaml_1678379291841/work
+requests==2.31.0
 safetensors==0.4.1
 scikit-learn==1.3.2
-SciPy @ file:///Users/runner/miniforge3/conda-bld/scipy-split_1700812582578/work/dist/scipy-1.11.4-cp311-cp311-macosx_10_9_x86_64.whl#sha256=5b875a53aeeb67c8451f09cb04406bae2b2ac7255cf4b820ae8098cfc1031194
+scipy==1.11.4
 sentencepiece==0.1.99
 six==1.16.0
 smart-open==6.4.0
@@ -89,22 +80,23 @@ sniffio==1.3.0
 spacy==3.7.2
 spacy-legacy==3.0.12
 spacy-loggers==1.0.5
+SQLAlchemy==2.0.23
 srsly==2.4.8
-sympy @ file:///Users/ec2-user/ci_py311_2/sympy_1679338337660/work
+sympy==1.12
+tenacity==8.2.3
 thinc==8.2.1
 threadpoolctl==3.2.0
-tiktoken==0.5.1
+tiktoken==0.5.2
 tokenizers==0.15.0
 torch==2.1.1
-tqdm @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_03acd6t6ca/croot/tqdm_1679561866522/work
+tqdm==4.66.1
 transformers==4.35.2
-truststore @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_d4qy09ztdt/croot/truststore_1695244322396/work
 typer==0.9.0
-typing_extensions @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_35a9251r5y/croot/typing_extensions_1690297487409/work
+typing-inspect==0.9.0
+typing_extensions==4.8.0
 tzdata==2023.3
-urllib3 @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_62orwr3pr2/croot/urllib3_1698257564351/work
+urllib3==2.1.0
 wasabi==1.1.2
 weasel==0.3.4
 xxhash==3.4.1
 yarl==1.9.3
-zstandard @ file:///Users/ec2-user/ci_py311_2/zstandard_1679338593428/work

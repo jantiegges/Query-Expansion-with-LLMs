@@ -1,2 +1,10 @@
 __pycache__/
 *.log
+.env
+data/*
+!data/.gitkeep
+log/*
+!log/.gitkeep
+
+.idea/
+venv/
