@@ -11,6 +11,15 @@ data/expanded-queries/multi-shot/*
 !data/expanded-queries/multi-shot/.gitkeep
 data/expanded-queries/answer/*
 !data/expanded-queries/answer/.gitkeep
+data/expanded-queries/chain-of-thought/*
+!data/expanded-queries/chain-of-thought/.gitkeep
+data/expanded-queries/chain-of-thought-prf/*
+!data/expanded-queries/chain-of-thought-prf/.gitkeep
+data/expanded-queries/q2d-zs/*
+!data/expanded-queries/q2d-zs/.gitkeep
+data/expanded-queries/q2d-zs-prf/*
+!data/expanded-queries/q2d-zs-prf/.gitkeep
+
 log/*
 !log/.gitkeep
 
