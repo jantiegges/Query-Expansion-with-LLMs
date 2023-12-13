@@ -19,6 +19,10 @@ data/expanded-queries/q2d-zs/*
 !data/expanded-queries/q2d-zs/.gitkeep
 data/expanded-queries/q2d-zs-prf/*
 !data/expanded-queries/q2d-zs-prf/.gitkeep
+data/expanded-queries/q2e-zs/*
+!data/expanded-queries/q2e-zs/.gitkeep
+data/expanded-queries/q2e-zs-prf/*
+!data/expanded-queries/q2e-zs-prf/.gitkeep
 
 log/*
 !log/.gitkeep
