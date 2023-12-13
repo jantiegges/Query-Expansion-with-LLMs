@@ -1,8 +1,16 @@
 __pycache__/
 *.log
 .env
-data/*
-!data/.gitkeep
+data/raw/*
+!data/raw/.gitkeep
+data/expanded-queries/one-shot/*
+!data/expanded-queries/one-shot/.gitkeep
+data/expanded-queries/zero-shot/*
+!data/expanded-queries/zero-shot/.gitkeep
+data/expanded-queries/multi-shot/*
+!data/expanded-queries/multi-shot/.gitkeep
+data/expanded-queries/answer/*
+!data/expanded-queries/answer/.gitkeep
 log/*
 !log/.gitkeep
 

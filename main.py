@@ -22,7 +22,7 @@ chat = ChatOpenAI(openai_api_key=openai_api_key, model="gpt-3.5-turbo")
 def get_query_expansion_dataset(dataset, option='zero-shot'):
     # try to load the expanded dataset
     try:
-        with open(f'./data/miracl-en-queries-22-12-expanded-{option}.pkl', 'rb') as f:
+        with open(f'./data/expanded-queries/{option}/miracl-en-queries-22-12-expanded-{option}.pkl', 'rb') as f:
             expanded_dataset = pickle.load(f)
         return expanded_dataset
     except:
@@ -45,7 +45,7 @@ def get_query_expansion_dataset(dataset, option='zero-shot'):
             expanded_dataset[i]['query'] = expanded_query
             #print(expanded_dataset[i]['query'])
         
-        with open(f'./data/miracl-en-queries-22-12-expanded-{option}.pkl', 'wb') as f:
+        with open(f'./data/expanded-queries/{option}/miracl-en-queries-22-12-expanded-{option}.pkl', 'wb') as f:
             pickle.dump(expanded_dataset, f)
 
         return expanded_dataset
@@ -86,30 +86,6 @@ if __name__ == "__main__":
     print(f'BM25 Recall@100: {recall:.4f}')
     print(f'BM25 nDCG@10: {ndcg:.4f}')
     print("\n")
-
-    # # mDPR
-    # encoder = TctColBertQueryEncoder('castorini/mdpr-tied-pft-msmarco')
-    # searcher = FaissSearcher.from_prebuilt_index(
-    #     'miracl-v1.0-en-mdpr-tied-pft-msmarco',
-    #     encoder
-    # )
-    # recall, ndcg = run_search(searcher, dataset)
-    # print(f'mDPR Recall@100: {recall:.4f}')
-    # print(f'mDPR nDCG@10: {ndcg:.4f}')
-    # print("\n")
-
-    # # Hybrid
-    # ssearcher = LuceneSearcher.from_prebuilt_index('miracl-v1.0-en')
-    # encoder = TctColBertQueryEncoder('castorini/mdpr-tied-pft-msmarco')
-    # dsearcher = FaissSearcher.from_prebuilt_index(
-    #     'miracl-v1.0-en-mdpr-tied-pft-msmarco',
-    #     encoder
-    # )
-    # hsearcher = HybridSearcher(dsearcher, ssearcher)
-    # recall, ndcg= run_search(hsearcher, dataset)
-    # print(f'Hybrid Recall@100: {recall:.4f}')
-    # print(f'Hybrid nDCG@10: {ndcg:.4f}')
-    # print("\n")
 
     ########################################################
     ### EXPERIMENT 2: QUERY EXPANSION - ZERO SHOT PROMPT ###
