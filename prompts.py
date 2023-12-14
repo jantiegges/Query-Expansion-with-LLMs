@@ -62,25 +62,25 @@ ANSWER_PROMPT = ChatPromptTemplate.from_messages(
 )
 
 # Q2D Zero-shot prompt from Table 3 of Jagerman et. al: https://arxiv.org/pdf/2305.03653.pdf
-Q2D_ZS_PROMPT = ChatPromptTemplate.from_template('Write a passage that answers the following query: {query}')
+Q2D_ZS_PROMPT = ChatPromptTemplate.from_template('Write a passage in {lang} that answers the following query: {query}')
 
 # Q2D Zero-shot prompt with pseudo-relevant feedback from Jagerman et. al
-Q2D_ZS_PRF_PROMPT = ChatPromptTemplate.from_template('Write a passage that answers the given query based on the context: \
+Q2D_ZS_PRF_PROMPT = ChatPromptTemplate.from_template('Write a passage in {lang} that answers the given query based on the context: \
                                                       \n\nContext:{doc_1}\n{doc_2}\n{doc_3}\nQuery:{query}\nPassage:')
 
 # Q2E Zero-shot prompt from Jagerman et. al
-Q2E_ZS_PROMPT = ChatPromptTemplate.from_template('Write a list of keywords for the following query: {query}')
+Q2E_ZS_PROMPT = ChatPromptTemplate.from_template('Write a list of keywords in {lang} for the following query: {query}')
 
 # Q2E Zero-shot prompt with pseudo-relevant feedback from Jagerman et. al
-Q2E_ZS_PRF_PROMPT = ChatPromptTemplate.from_template('Write a list of keywords for the given query based on the context: \
+Q2E_ZS_PRF_PROMPT = ChatPromptTemplate.from_template('Write a list of keywords in {lang} for the given query based on the context: \
                                                       \n\nContext:{doc_1}\n{doc_2}\n{doc_3}\nQuery:{query}\nKeywords:')
 
 # Chain of thought prompt from Table 3 of Jagerman et. al
-COT_PROMPT = ChatPromptTemplate.from_template('Answer the following query:\n {query}\nGive the rational before anserwing')
+COT_PROMPT = ChatPromptTemplate.from_template('Answer the following query:\n {query}\nGive the rational in {lang} before anserwing')
 
 # Chain of thought prompt with pseudo-relevant feedback from Jagerman et. al
 COT_PRF_PROMPT = ChatPromptTemplate.from_template('Answer the following query based on the context:\nContext:{doc_1}\n \
-                                                   {doc_2}\n{doc_3}\nQuery: {query}\nGive the rational before anserwing')
+                                                   {doc_2}\n{doc_3}\nQuery: {query}\nGive the rational in {lang} before anserwing')
 
 PROMPTS = {'q2d-zs': Q2D_ZS_PROMPT,
            'q2d-zs-prf': Q2D_ZS_PRF_PROMPT,
