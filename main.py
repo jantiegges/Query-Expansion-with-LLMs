@@ -56,15 +56,15 @@ def get_query_expansion_dataset(dataset, chat, chat_name, lang='en', prompt='q2d
 
             if prompt[-3:] == 'prf':
                 doc_1, doc_2, doc_3 = prf_docs[query]
-                messages = PROMPTS[prompt].format_messages(doc_1=doc_1, doc_2=doc_2, doc_3=doc_3, query=query, lang=lang_full)
+                messages = PROMPTS[prompt].format_messages(doc_1=doc_1, doc_2=doc_2, doc_3=doc_3, query=query)
             else:
-                messages = PROMPTS[prompt].format_messages(query=query, lang=lang_full)
+                messages = PROMPTS[prompt].format_messages(query=query)
 
             # Repeat original query and combine with LLM results (see Equation 1 of Jagerman et. al)
             repeated_query = ' '.join([query for _ in range(n_query_repeats)])
             expanded_query = chat(messages).content
             expanded_dataset[i]['query'] = repeated_query + ' ' + expanded_query
-            print(expanded_dataset[i]['query'])
+            # print(expanded_dataset[i]['query'])
             # exit()
 
         with open(f'./data/expanded-queries/{prompt}/{chat_name}-miracl-{lang}-queries-22-12-expanded-{prompt}-{n_query_repeats}-query-repeats.pkl', 'wb') as f:
