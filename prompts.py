@@ -76,11 +76,14 @@ Q2E_ZS_PRF_PROMPT = ChatPromptTemplate.from_template('Write a list of keywords f
                                                       \n\nContext:{doc_1}\n{doc_2}\n{doc_3}\nQuery:{query}\nKeywords:')
 
 # Chain of thought prompt from Table 3 of Jagerman et. al
-COT_PROMPT = ChatPromptTemplate.from_template('Answer the following query:\n {query}\nGive the rational before anserwing')
+COT_PROMPT = ChatPromptTemplate.from_template('Answer the following query:\n {query}\nGive the rational before answering')
 
 # Chain of thought prompt with pseudo-relevant feedback from Jagerman et. al
 COT_PRF_PROMPT = ChatPromptTemplate.from_template('Answer the following query based on the context:\nContext:{doc_1}\n \
-                                                   {doc_2}\n{doc_3}\nQuery: {query}\nGive the rational before anserwing')
+                                                   {doc_2}\n{doc_3}\nQuery: {query}\nGive the rational before answering')
+
+# Chain of thought prompt for different languages
+COT_PROMPT_FR = ChatPromptTemplate.from_template('Répondez à la question suivante:\n {query}\nDonnez le rationnel avant de répondre.')
 
 PROMPTS = {'q2d-zs': Q2D_ZS_PROMPT,
            'q2d-zs-prf': Q2D_ZS_PRF_PROMPT,
@@ -88,6 +91,7 @@ PROMPTS = {'q2d-zs': Q2D_ZS_PROMPT,
            'q2e-zs-prf': Q2E_ZS_PRF_PROMPT,
            'chain-of-thought': COT_PROMPT,
            'chain-of-thought-prf': COT_PRF_PROMPT,
+           'chain-of-thought-fr': COT_PROMPT_FR,
            'zero-shot': ZERO_SHOT_PROMPT,   # older prompts
            'one-shot': ONE_SHOT_PROMPT,
            'multi-shot': MULTI_SHOT_PROMPT,
