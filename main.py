@@ -1,54 +1,75 @@
 from pyserini.search.lucene import LuceneSearcher
-from pyserini.search.faiss import FaissSearcher, TctColBertQueryEncoder
-from pyserini.search.hybrid import HybridSearcher
 from datasets import load_dataset
 from tqdm import tqdm
 from dotenv import load_dotenv
 import os
-from langchain.prompts import ChatPromptTemplate
 from langchain.chat_models import ChatOpenAI
 import pickle
 import copy
-
+from prompts import PROMPTS
 from utils.metrics import get_recall_at_100, get_nDCG_at_10
-from prompts import ZERO_SHOT_PROMPT, ONE_SHOT_PROMPT, MULTI_SHOT_PROMPT, ANSWER_PROMPT
-
 
 # set up LLM
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
 chat = ChatOpenAI(openai_api_key=openai_api_key, model="gpt-3.5-turbo")
 
-def get_query_expansion_dataset(dataset, option='zero-shot'):
+def get_prf_docs(dataset, lang='en', k=3):
+    """Find the top :k: most relevant documents using BM25 search with the original query"""
+
+    # TODO: Add options for different languages
+    if lang == 'en':
+        searcher = LuceneSearcher.from_prebuilt_index('miracl-v1.0-en')
+    else:
+        raise ValueError(f'Invalid language: {lang}')
+
+    prf_docs = {}
+    for data in tqdm(dataset, total=len(dataset), desc='Searching'):
+        query = data['query']
+        results = searcher.search(query, k=k)
+        prf_docs[query] = tuple([r.raw.partition('"text" : "')[-1][:-1] for r in results])
+
+    return prf_docs
+
+
+def get_query_expansion_dataset(dataset, chat, lang='en', option='q2d-zs', n_query_repeats=5):
+    """Expands queries with names based on Table 3 of Jagerman et. al: https://arxiv.org/pdf/2305.03653.pdf. 
+    As in Jagerman et. al, the original query is repeated :n_query_repeats: times in the expanded query."""
     # try to load the expanded dataset
     try:
-        with open(f'./data/expanded-queries/{option}/miracl-en-queries-22-12-expanded-{option}.pkl', 'rb') as f:
+        with open(f'./data/expanded-queries/{option}/miracl-en-queries-22-12-expanded-{option}-{n_query_repeats}-query-repeats.pkl','rb') as f:
             expanded_dataset = pickle.load(f)
         return expanded_dataset
     except:
         expanded_dataset = copy.deepcopy(dataset)
+        if option[-3:] == 'prf':
+            print('Getting prf documents...')
+            prf_docs = get_prf_docs(dataset, lang=lang)
+            print('Done.')
+
+        assert option in PROMPTS.keys(), f'Prompt option not found: {option}.'
+
         for i in tqdm(range(len(dataset)), total=len(dataset), desc='Expanding queries'):
             query = dataset[i]['query']
 
-            if option == 'zero-shot':
-                messages = ZERO_SHOT_PROMPT.format_messages(query=query)
-            elif option == 'one-shot':
-                messages = ONE_SHOT_PROMPT.format_messages(query=query)
-            elif option == 'multi-shot':
-                messages = MULTI_SHOT_PROMPT.format_messages(query=query)
-            elif option == 'answer':
-                messages = ANSWER_PROMPT.format_messages(question=query)
+            if option[-3:] == 'prf':
+                doc_1, doc_2, doc_3 = prf_docs[query]
+                messages = PROMPTS[option].format_messages(doc_1=doc_1, doc_2=doc_2, doc_3=doc_3, query=query)
             else:
-                raise ValueError(f'Invalid option: {option}')
+                messages = PROMPTS[option].format_messages(query=query)
 
+            # Repeat original query and combine with LLM results (see Equation 1 of Jagerman et. al)
+            repeated_query = ' '.join([query for _ in range(n_query_repeats)])
             expanded_query = chat(messages).content
-            expanded_dataset[i]['query'] = expanded_query
-            #print(expanded_dataset[i]['query'])
-        
-        with open(f'./data/expanded-queries/{option}/miracl-en-queries-22-12-expanded-{option}.pkl', 'wb') as f:
+            expanded_dataset[i]['query'] = repeated_query + ' ' + expanded_query
+            # print(expanded_dataset[i]['query'])
+            # exit()
+
+        with open(f'./data/expanded-queries/{option}/miracl-en-queries-22-12-expanded-{option}-{n_query_repeats}-query-repeats.pkl', 'wb') as f:
             pickle.dump(expanded_dataset, f)
 
         return expanded_dataset
+
 
 def run_search(searcher, dataset, k=100):
     recall, ndcg = [], []
