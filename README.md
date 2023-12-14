@@ -12,6 +12,6 @@
    
 ## Run Experiments
 
-⚠️ **Warning**: The code loads indexes that are huge. Make sure to have around 120GB of free disk space.
+⚠️ **Warning**: The code loads indexes that are big. Make sure to have around 20GB of free disk space.
 
 1. Run `python main.py` to run all experiments. 
