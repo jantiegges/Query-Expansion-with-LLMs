@@ -23,6 +23,8 @@ data/expanded-queries/q2e-zs/*
 !data/expanded-queries/q2e-zs/.gitkeep
 data/expanded-queries/q2e-zs-prf/*
 !data/expanded-queries/q2e-zs-prf/.gitkeep
+data/expanded-queries/chain-of-thought-fr/*
+!data/expanded-queries/chain-of-thought-fr/.gitkeep
 
 log/*
 !log/.gitkeep
