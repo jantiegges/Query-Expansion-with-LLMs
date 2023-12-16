@@ -29,6 +29,8 @@ data/expanded-queries/chain-of-thought-fr/*
 !data/expanded-queries/chain-of-thought-fr/.gitkeep
 data/expanded-queries/chain-of-thought-de/*
 !data/expanded-queries/chain-of-thought-de/.gitkeep
+data/expanded-queries/chain-of-thought-zh/*
+!data/expanded-queries/chain-of-thought-zh/.gitkeep
 
 log/*
 !log/.gitkeep

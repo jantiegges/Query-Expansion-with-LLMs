@@ -88,8 +88,11 @@ COT_PROMPT_SHORT = ChatPromptTemplate.from_template('Answer the following questi
 # Chain of thought prompt for french
 COT_PROMPT_FR = ChatPromptTemplate.from_template('Répondez à la question suivante:\n {query} Donnez le raisonnement avant de répondre. La réponse doit être très courte.')
 
+# Chain of thought prompt for german
+COT_PROMPT_DE = ChatPromptTemplate.from_template('Beantworte die folgende Frage:\n {query} Erkläre vor dem antworten den Hintegrund. Fasse dich bei der Antwort sehr kurz.')
+
 # Chain of thought prompt for chinese
-COT_PROMPT_DE = ChatPromptTemplate.from_template('Beantworte die folgende Frage:\n {query} Erläutere vor dem antworten den Hintergrund. Fasse dich bei der Antwort sehr kurz.')
+COT_PROMPT_ZH = ChatPromptTemplate.from_template('回答下列问题：\n {query} 回答前请说明理由。整个答案要非常简短。')
 
 PROMPTS = {'q2d-zs': Q2D_ZS_PROMPT,
            'q2d-zs-prf': Q2D_ZS_PRF_PROMPT,
@@ -100,6 +103,7 @@ PROMPTS = {'q2d-zs': Q2D_ZS_PROMPT,
            'chain-of-thought-short': COT_PROMPT_SHORT,
            'chain-of-thought-fr': COT_PROMPT_FR,
            'chain-of-thought-de': COT_PROMPT_DE,
+           'chain-of-thought-zh': COT_PROMPT_ZH,
            'zero-shot': ZERO_SHOT_PROMPT,   # older prompts
            'one-shot': ONE_SHOT_PROMPT,
            'multi-shot': MULTI_SHOT_PROMPT,
