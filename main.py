@@ -33,7 +33,7 @@ def get_prf_docs(dataset, lang='en', k=3):
     return prf_docs
 
 
-def get_query_expansion_dataset(dataset, chat, chat_name, lang='en', prompt='q2d-zs', n_query_repeats=5):
+def get_query_expansion_dataset(dataset, chat, chat_name, lang='en', prompt='q2d-zs', n_query_repeats=5, verbose=False):
     """Expands queries with names based on Table 3 of Jagerman et. al: https://arxiv.org/pdf/2305.03653.pdf. 
     As in Jagerman et. al, the original query is repeated :n_query_repeats: times in the expanded query."""
     # try to load the expanded dataset
@@ -64,7 +64,8 @@ def get_query_expansion_dataset(dataset, chat, chat_name, lang='en', prompt='q2d
             repeated_query = ' '.join([query for _ in range(n_query_repeats)])
             expanded_query = chat(messages).content
             expanded_dataset[i]['query'] = repeated_query + ' ' + expanded_query
-            # print(expanded_dataset[i]['query'])
+            if verbose:
+                print(expanded_dataset[i]['query'])
             # exit()
 
         with open(f'./data/expanded-queries/{prompt}/{chat_name}-miracl-{lang}-queries-22-12-expanded-{prompt}-{n_query_repeats}-query-repeats.pkl', 'wb') as f:
@@ -94,7 +95,7 @@ def run_search(searcher, dataset, k=100):
     return recall, ndcg
 
 
-if __name__ == "__main__":    
+if __name__ == "__main__":
     dataset = load_dataset("Cohere/miracl-en-queries-22-12", split="dev")
     dataset = dataset.to_pandas().to_dict(orient='records')
 
