@@ -33,8 +33,8 @@ def get_prf_docs(dataset, lang='en', k=3):
     return prf_docs
 
 
-def get_query_expansion_dataset(dataset, chat, chat_name, lang='en', prompt='q2d-zs', n_query_repeats=5, verbose=False):
-    """Expands queries with names based on Table 3 of Jagerman et. al: https://arxiv.org/pdf/2305.03653.pdf. 
+def get_query_expansion_dataset(dataset, chat, chat_name, lang='en', prompt='answer', n_query_repeats=5, verbose=False):
+    """Expands queries with using one of the prompt templates from prompts.py. 
     As in Jagerman et. al, the original query is repeated :n_query_repeats: times in the expanded query."""
     # try to load the expanded dataset
     try:
@@ -75,6 +75,9 @@ def get_query_expansion_dataset(dataset, chat, chat_name, lang='en', prompt='q2d
 
 
 def run_search(searcher, dataset, k=100):
+    """Performs information retrieval using the :searcher: on the :dataset:.
+      Finds the top :k: most relevant queries. Returns the recall and nDCG scores for the search.
+    """
     recall, ndcg = [], []
     for data in tqdm(dataset, total=len(dataset), desc='Searching'):
         query = data['query']
@@ -107,63 +110,6 @@ if __name__ == "__main__":
     # BM25
     searcher = LuceneSearcher.from_prebuilt_index('miracl-v1.0-en')
     recall, ndcg = run_search(searcher, dataset)
-    print(f'BM25 Recall@100: {recall:.4f}')
-    print(f'BM25 nDCG@10: {ndcg:.4f}')
-    print("\n")
-
-    ########################################################
-    ### EXPERIMENT 2: QUERY EXPANSION - ZERO SHOT PROMPT ###
-    print('EXPERIMENT 2: QUERY EXPANSION - ZERO SHOT PROMPT')
-    print("\n")
-
-    # BM25
-    searcher = LuceneSearcher.from_prebuilt_index('miracl-v1.0-en')
-    data_expanded_zero_shot = get_query_expansion_dataset(dataset, option='zero-shot')
-    #data_expanded_zero_shot_test = get_query_expansion_dataset(dataset[:10], option='zero-shot')
-
-    recall, ndcg = run_search(searcher, data_expanded_zero_shot)
-    print(f'BM25 Recall@100: {recall:.4f}')
-    print(f'BM25 nDCG@10: {ndcg:.4f}')
-    print("\n")
-
-    #######################################################
-    ### EXPERIMENT 3: QUERY EXPANSION - ONE SHOT PROMPT ###
-    print('EXPERIMENT 3: QUERY EXPANSION - ONE SHOT PROMPT')
-    print("\n")
-
-    # BM25
-    searcher = LuceneSearcher.from_prebuilt_index('miracl-v1.0-en')
-    data_expanded_one_shot = get_query_expansion_dataset(dataset, option='one-shot')
-
-    recall, ndcg = run_search(searcher, data_expanded_one_shot)
-    print(f'BM25 Recall@100: {recall:.4f}')
-    print(f'BM25 nDCG@10: {ndcg:.4f}')
-    print("\n")
-
-    #########################################################
-    ### EXPERIMENT 4: QUERY EXPANSION - MULTI SHOT PROMPT ###
-    print('EXPERIMENT 4: QUERY EXPANSION - MULTI SHOT PROMPT')
-    print("\n")
-
-    # BM25
-    searcher = LuceneSearcher.from_prebuilt_index('miracl-v1.0-en')
-    data_expanded_multi_shot = get_query_expansion_dataset(dataset, option='multi-shot')
-
-    recall, ndcg = run_search(searcher, data_expanded_multi_shot)
-    print(f'BM25 Recall@100: {recall:.4f}')
-    print(f'BM25 nDCG@10: {ndcg:.4f}')
-    print("\n")
-
-    #####################################################
-    ### EXPERIMENT 5: QUERY EXPANSION - ANSWER PROMPT ###
-    print('EXPERIMENT 5: QUERY EXPANSION - ANSWER PROMPT')
-    print("\n")
-
-    # BM25
-    searcher = LuceneSearcher.from_prebuilt_index('miracl-v1.0-en')
-    data_expanded_answer = get_query_expansion_dataset(dataset, option='answer')
-
-    recall, ndcg = run_search(searcher, data_expanded_answer)
     print(f'BM25 Recall@100: {recall:.4f}')
     print(f'BM25 nDCG@10: {ndcg:.4f}')
     print("\n")
